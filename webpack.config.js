@@ -43,11 +43,11 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              limit: 1024,
+              limit: 4 * 1024,
               fallback: {
                 loader: 'file-loader',
                 options: {
-                    name: 'img/[name].[hash:8].[ext]'
+                  name: 'img/[name].[hash:8].[ext]'
                 }
               }
             }

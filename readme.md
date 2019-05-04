@@ -168,6 +168,72 @@ new HtmlWebpackPlugin({
 1. file-loader
 2. url-loader
 
+```javascript
+{
+  test: /\.(jpe?g|png|gif)$/i,
+  use: [
+    {
+      loader: 'url-loader',
+      options: {
+        limit: 4 * 1024,
+        fallback: {
+          loader: 'file-loader',
+          options: {
+            name: 'img/[name].[hash:8].[ext]'
+          }
+        }
+      }
+    }
+  ]
+},
+{
+  test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+  use: [
+    {
+      loader: 'url-loader',
+      options: {
+        limit: 4096,
+        fallback: {
+          loader: 'file-loader',
+          options: {
+            name: 'media/[name].[hash:8].[ext]'
+          }
+        }
+      }
+    }
+  ]
+},
+{
+  test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
+  use: [
+    {
+      loader: 'url-loader',
+      options: {
+        limit: 4096,
+        fallback: {
+          loader: 'file-loader',
+          options: {
+            name: 'fonts/[name].[hash:8].[ext]'
+          }
+        }
+      }
+    }
+  ]
+},
+```
+
+使用的时候(以本地图片资源为例)
+
+```javascript
+render() {
+  return (
+    <div>
+      <img src={require('image/bing3.jpg')} />
+    </div>
+  )
+}
+```
+
 ## react jsx
 
 1. react react-dom
@@ -186,3 +252,9 @@ babel-plugin-react-css-modules
 ### 区分生产、开发环境
 
 ### 使用DllPlugin
+
+## react-router
+
+## react-redux
+
+## mobx
