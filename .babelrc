@@ -6,10 +6,16 @@
   "plugins": [
     "@babel/plugin-transform-runtime",
     [
-      "react-css-modules",
-      {
+      "react-css-modules", {
         "generateScopedName": "[local]--[hash:5]",
         "webpackHotModuleReloading": true //css热加载
+      }
+    ],
+    [
+      "import", {
+        "libraryName": "antd",
+        "libraryDirectory": "es",
+        "style": "css" // `style: true` 会加载 less 文件
       }
     ],
     "@babel/plugin-proposal-class-properties", //支持react中方法 支持 箭头函数 而不用bind

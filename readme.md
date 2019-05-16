@@ -139,7 +139,6 @@ plugins: [
     'css-loader',
     'postcss-loader',
   ],
-  exclude: /node_modules/
 }
 
 //postcss.config.js
@@ -153,6 +152,29 @@ module.exports = {
 ### css modules
 
 与react css modules配合实现
+
+```javascript
+// webpack.config.js
+{
+  test: /\.(css|less)$/,
+  use: [
+    {
+      loader: MiniCssExtractPlugin.loader,
+      options: {
+        hmr: true,
+      },
+    },
+    {
+      loader: 'css-loader',
+      options: {
+        modules: true,
+        localIdentName: '[local]--[hash:5]'
+      }
+    },
+    'postcss-loader'
+  ],
+}
+```
 
 ## html
 
@@ -243,9 +265,97 @@ render() {
 
 @babel/plugin-proposal-class-properties: 支持react中方法 支持 箭头函数 而不用bind
 
+```javascript
+// .babelrc
+"plugins": [
+  "@babel/plugin-proposal-class-properties",
+]
+```
+
 ### react-css
 
-babel-plugin-react-css-modules
+babel-plugin-react-css-modules: 支持styleName(模块化) className语法
+
+```javascript
+// .babelrc
+"plugins": [
+  [
+    "react-css-modules",
+    {
+      // 需要与css module那里保持一致
+      "generateScopedName": "[local]--[hash:5]",
+      "webpackHotModuleReloading": true //css热加载
+    }
+  ],
+]
+```
+
+### 按需加载antd的css
+
+1. antd
+2. babel-plugin-import
+
+```javascript
+// .babelrc
+"plugins": [
+  [
+    "import", {
+      "libraryName": "antd",
+      "libraryDirectory": "es",
+      "style": "css" // `style: true` 会加载 less 文件
+    }
+  ],
+]
+
+// 没有插件之前需要这么写
+import Button from 'antd/lib/button';
+import 'antd/lib/button/style';
+
+// babel-plugin-import 会将下面的代码转成上面的形式
+import { Button } from 'antd';
+```
+
+这样配置之后理论上是ok的，但是实际上会发现antd的css也会被css-module模块化，也就是加上hash后缀，而html上的class并没有这个hash，最终导致antd的样式没有被正确使用到。  
+解决思路：给css模块化限定范围
+
+```javascript
+// webpack.config.js
+{
+  test: /\.(css|less)$/,
+  use: [
+    {
+      loader: MiniCssExtractPlugin.loader,
+      options: {
+        hmr: true,
+      },
+    },
+    {
+      loader: 'css-loader',
+      options: {
+        modules: true,
+        localIdentName: '[local]--[hash:5]'
+      }
+    },
+    'postcss-loader'
+  ],
+  exclude: /node_modules/
+},
+{
+  // 主要处理antd
+  test: /\.(css|less)$/,
+  use: [
+    {
+      loader: MiniCssExtractPlugin.loader,
+      options: {
+        hmr: true,
+      },
+    },
+    'css-loader',
+    'postcss-loader',
+  ],
+  include: /node_modules/
+}
+```
 
 ## 优化
 
@@ -258,3 +368,16 @@ babel-plugin-react-css-modules
 ## react-redux
 
 ## mobx
+
+## 实战——电商管理系统
+
+## 业务功能模块
+
+1. 商品管理
+2. 订单管理
+3. 用户管理
+
+## 核心功能模块
+
+1. 权限系统设计
+2. 单点登录

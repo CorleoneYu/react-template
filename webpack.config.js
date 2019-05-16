@@ -31,7 +31,7 @@ module.exports = {
     publicPath: '/',
   },
   devServer: {
-    port: 3000,
+    port: 8080,
     contentBase: path.resolve(__dirname, './dist'), //指定服务文件
     hot: true, //热更新
   },
@@ -96,6 +96,7 @@ module.exports = {
         exclude: /node_modules/
       },
       {
+        // 主要处理antd
         test: /\.(css|less)$/,
         use: [
           {
@@ -114,6 +115,20 @@ module.exports = {
           'postcss-loader'
         ],
         exclude: /node_modules/
+      },
+      {
+        test: /\.(css|less)$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: true,
+            },
+          },
+          'css-loader',
+          'postcss-loader',
+        ],
+        include: /node_modules/
       }
     ]
   },
