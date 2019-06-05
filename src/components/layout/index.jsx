@@ -1,10 +1,12 @@
 import React, {Component} from "react";
 import ReactDOM from "react-dom";
-
+import Goods from 'components/goods';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
-class Page extends Component {
+
+
+export default class extends Component {
   render() {
     return (
       <div>
@@ -78,7 +80,7 @@ class Page extends Component {
                   minHeight: 280,
                 }}
               >
-                Content
+                <Goods />
               </Content>
             </Layout>
           </Layout>
@@ -87,5 +89,3 @@ class Page extends Component {
     )
   }
 }
-
-export default Page;

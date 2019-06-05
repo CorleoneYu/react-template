@@ -363,11 +363,20 @@ import { Button } from 'antd';
 
 ### 使用DllPlugin
 
-## react-router
+## 技术栈接入
 
-## react-redux
+1. react-router
+2. react-redux
+3. typescript
+4. saga
 
-## mobx
+### react-router
+
+### react-redux
+
+### typescript
+
+### saga
 
 ## 实战——电商管理系统
 

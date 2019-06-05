@@ -2,13 +2,13 @@ import React, {Component} from "react";
 import ReactDOM from "react-dom";
 import './style.css';
 
-import Page from 'components/page';
+import Layout from 'components/layout';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Page />
+        <Layout />
       </div>
     )
   }

@@ -19,6 +19,7 @@ module.exports = {
       'api': resolve('src/api'),
       'base': resolve('src/base'),
       'store': resolve('src/store'),
+      'actions': resolve('src/store/actions'),
     },
     extensions: ['.js', '.jsx']
   },
