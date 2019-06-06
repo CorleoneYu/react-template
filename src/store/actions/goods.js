@@ -1,17 +1,17 @@
 import actionType from '../action-type';
 
-export const addGoods = ({goodsId, price, name}) => ({
+export const addGoods = ({id, price, name}) => ({
   type: actionType.goods.ADD_GOODS,
   payload: {
     name,
     price,
-    goodsId,
+    id,
   }
 })
 
-export const deleteGoods = goodsId => ({
+export const deleteGoods = id => ({
   type: actionType.goods.DELETE_GOODS,
   payload: {
-    goodsId
+    id,
   }
 })

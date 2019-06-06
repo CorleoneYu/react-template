@@ -35,6 +35,9 @@ module.exports = {
     port: 8080,
     contentBase: path.resolve(__dirname, './dist'), //指定服务文件
     hot: true, //热更新
+    historyApiFallback: {
+      index: '/', //output.publicPath
+    },
   },
   module: {
     rules: [

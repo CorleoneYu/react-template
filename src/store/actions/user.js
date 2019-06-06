@@ -1,17 +1,17 @@
-import acionType from '../action-type';
+import actionType from '../action-type';
 
-export const addUser = ({userId, name, age}) => ({
-  type: acionType.ADD_USER,
+export const addUser = ({id, name, age}) => ({
+  type: actionType.user.ADD_USER,
   payload: {
     name,
     age,
-    id: userId,
+    id,
   }
 })
 
-export const deleteUser = userId => ({
-  type: actionType.DELETE_USER,
+export const deleteUser = id => ({
+  type: actionType.user.DELETE_USER,
   payload: {
-    id: userId
+    id,
   }
 })
