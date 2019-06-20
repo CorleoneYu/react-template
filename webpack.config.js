@@ -8,6 +8,8 @@ function resolve (dir) {
   return path.join(__dirname, dir)
 }
 
+const depPlugin = require('./plugin/dep-plugin/index.js');
+
 module.exports = {
   mode: 'development',
   resolve: {
@@ -148,5 +150,6 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[id].css',
     }),
+    new depPlugin('./src/main.js'),
   ]
 }

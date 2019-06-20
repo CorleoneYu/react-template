@@ -365,12 +365,12 @@ import { Button } from 'antd';
 
 ## 技术栈接入
 
-1. react-router
+1. react-router-dom
 2. react-redux
 3. typescript
 4. saga
 
-### react-router
+### react-router-dom
 
 ### react-redux
 
